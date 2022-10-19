@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-![example workflow](https://github.com/fjasic/react-app/actions/workflows/CI/badge.svg?branch=develop&event=push)
+![example workflow](https://github.com/fjasic/react-app/actions/workflows/ci.yml/badge.svg?branch=develop&event=push)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
