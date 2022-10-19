@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Get npm cache directory
         id: npm-cache-dir
         run: |
@@ -23,16 +23,16 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
       - name: Use NodeJS
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
-          node-version: "12.x"
+          node-version: 16
       - run: npm ci
       - run: npm run format
       - run: npm test -- --coverage
         env:
           CI: true
       - name: Upload test coverage
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: code-coverage
           path: coverage
@@ -41,7 +41,7 @@ jobs:
         if: github.event_name == 'push'
       - name: Upload build folder
         if: github.event_name == 'push'
-        uses: actions/upload-artifact@v1
+        uses: actions/upload-artifact@v3
         with:
           name: build-folder
           path: build
