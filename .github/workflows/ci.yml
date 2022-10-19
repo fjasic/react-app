@@ -8,6 +8,9 @@ on:
 
 jobs:
   build:
+    env:
+        SURGE_LOGIN:  ${{ secrets.SURGE_LOGIN }}
+        SURGE_TOKEN:  ${{ secrets.SURGE_TOKEN }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -56,9 +59,13 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       - name: Deploy on staging
-        if: github.event_name == 'push'
+        if: github.event_name == 'push' && github.ref == 'refs/heads/develop'
         run: npx surge --project ./build --domain http://flawless-net.surge.sh/
+      - name: Deploy on production
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx surge --project ./build --domain yellow-hope.surge.sh
+      - name: upload coverage report
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: npx codecov
         env:
-          SURGE_LOGIN:  ${{ secrets.SURGE_LOGIN }}
-          SURGE_TOKEN:  ${{ secrets.SURGE_TOKEN }}
-
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
