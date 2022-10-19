@@ -22,9 +22,9 @@ jobs:
           CI: true
       - name: Build project
         run: npm run build
-        if: github.event_name == "push"
+        if: github.event_name == 'push'
       - name: Deploy on staging
-        if: github.event_name == "push"
+        if: github.event_name == 'push'
         run: npx surge --project ./build --domain http://flawless-net.surge.sh/
         env:
           SURGE_LOGIN:  ${{ secrets.SURGE_LOGIN }}
