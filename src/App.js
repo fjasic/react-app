@@ -15,7 +15,7 @@ function App() {
                     target="_blank"
                     rel="noopener noreferrer"
                 >
-                    Learn GH actions
+                    Learn React
                 </a>
             </header>
         </div>
