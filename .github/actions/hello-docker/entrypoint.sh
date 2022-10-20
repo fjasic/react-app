@@ -1,4 +1,4 @@
-#!/bin/sh -l
+#!/bin/bash
 echo "::debug ::Debug message"
 echo "::warning ::warning message"
 echo "::error ::error message"
